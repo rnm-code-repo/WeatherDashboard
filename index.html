@@ -249,18 +249,16 @@
                 var day;
                 output.push('<div style="padding: 5px; color: #fff;"><h5>5-Day Forecast:</h3></div>');
                 var curDate = new Date().getDate();
-
+                var cnt = 5;
                 for (var x = 0; x < wList.length; x++) {
                     dt = response.list[x].dt_txt.substring(0, response.list[x].dt_txt.indexOf(' '));
                     //console.log(dt);
-                    if (!wObj[dt] && Object.keys(wObj).length <
-                        5) { // && (new Date(dt).getDate() > curDate)) {
-
-
+                    if (!wObj[dt] && Object.keys(wObj).length < cnt) { // && (new Date(dt).getDate() > curDate)) {
                         icon = 'https://openweathermap.org/img/wn/' + wList[x].weather[0].icon + '.png';
                         if (x === 0 && (new Date(dt).getDate() + 1) === curDate) {
                             //console.log(dt + "<<-->>>>" + new Date(dt).getDate())
                             wObj[dt] = true;
+                            cnt=6;
                             //console.log(response.list[x].dt_txt);
                             cityInfo += '<img src="' + icon + '">';
                             $(".city").html(cityInfo);
